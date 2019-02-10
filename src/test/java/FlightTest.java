@@ -60,26 +60,12 @@ public class FlightTest {
         assertEquals(flight, passenger.getFlightInfo());
     }
 
-//    @Test
-//    public void checkIfSeatNumberAddedTrue(){
-//        flight.addPassenger(passenger, flight);
-//        assertEquals(true, flight.seatNumberAdded(passenger));
-//    }
-//
-//    @Test
-//    public void checkIfSeatNumberAddedFalse(){
-//        assertEquals(false, flight.seatNumberAdded(passenger));
-//    }
-
     @Test
     public void canAddTwoPassengersWithDifferentSeatNumbers(){
         flight.addPassenger(passenger, flight);
-        flight.addMorePassengers(passenger, flight, passenger.getSeatNumber());
+        flight.addMorePassengers(passenger2, flight, passenger.getSeatNumber());
         assertEquals(248, flight.getNumberOfAvailableSeats());
 
     }
-
-
-
 
 }
