@@ -7,12 +7,14 @@ public class FlightTest {
 
     Flight flight;
     Passenger passenger;
+    Passenger passenger2;
     Plane plane;
 
     @Before
     public void before() {
         flight = new Flight(PlaneType.BOEING747, "FR756", "GLA", "LON", "10am");
         passenger = new Passenger("Bob White", 2);
+        passenger2 = new Passenger("Sally White", 1);
         plane = new Plane(PlaneType.BOEING747);
     }
 
@@ -53,9 +55,31 @@ public class FlightTest {
 
     @Test
     public void canAddPassengerIfAvailableSeats(){
-        flight.addPassenger(passenger);
+        flight.addPassenger(passenger, flight);
         assertEquals(249, flight.getNumberOfAvailableSeats());
+        assertEquals(flight, passenger.getFlightInfo());
     }
+
+//    @Test
+//    public void checkIfSeatNumberAddedTrue(){
+//        flight.addPassenger(passenger, flight);
+//        assertEquals(true, flight.seatNumberAdded(passenger));
+//    }
+//
+//    @Test
+//    public void checkIfSeatNumberAddedFalse(){
+//        assertEquals(false, flight.seatNumberAdded(passenger));
+//    }
+
+    @Test
+    public void canAddTwoPassengersWithDifferentSeatNumbers(){
+        flight.addPassenger(passenger, flight);
+        flight.addMorePassengers(passenger, flight, passenger.getSeatNumber());
+        assertEquals(248, flight.getNumberOfAvailableSeats());
+
+    }
+
+
 
 
 }

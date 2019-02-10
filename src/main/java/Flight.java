@@ -52,10 +52,21 @@ public class Flight {
         return planeType.getCapacityValue() - this.passengers.size();
     }
 
-    public void addPassenger(Passenger passenger) {
+    public void addPassenger(Passenger passenger, Flight flight) {
         if(this.getNumberOfAvailableSeats() >= this.passengerListCount()){
             this.passengers.add(passenger);
+            passenger.addFlightInfo(flight);
+            passenger.getSeatNumber();
             this.getNumberOfAvailableSeats();
         }
     }
+
+    public void addMorePassengers(Passenger passenger, Flight flight, int seatNumber) {
+        int newSeatNumber = passenger.getSeatNumber();
+        if(newSeatNumber != seatNumber){
+            addPassenger(passenger, flight);
+        }
+
+    }
+
 }
